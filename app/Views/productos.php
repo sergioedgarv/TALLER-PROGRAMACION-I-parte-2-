@@ -26,19 +26,15 @@
                     <div class="card h-100">
                         <?php if (!empty($producto['imagen'])): ?>
                             <img src="<?= esc($producto['imagen']) ?>" class="card-img-top" alt="<?= esc($producto['nombre']) ?>">
-<<<<<<< HEAD
-                        <?php else: ?> <!-- eliminar este else y analizar mejor el if de arriba -->
-                            <img src="img\1.jpg" class="card-img-top" alt="Imagen no disponible">
-=======
-                        <?php else: ?>
-                            <img src="/images/default-product.png" class="card-img-top" alt="Imagen no disponible">
->>>>>>> 97f0d22ea250cdf6313eb15ade326eb1df72f349
+                      <?php else: ?>
+     <img src="img/1.jpg" class="card-img-top" alt="Imagen no disponible">
                         <?php endif; ?>
                         <div class="card-body">
                             <h5 class="card-title"><?= esc($producto['nombre']) ?></h5>
                             <p class="card-text"><?= esc($producto['descripcion']) ?></p>
                             <p class="card-text"><strong>Precio:</strong> $<?= number_format($producto['precio'], 2, ',', '.') ?></p>
                         </div>
+                        <!-- no utilizar de momento porque todavia no esta creado en la base de datos. -->
                         <div class="card-footer text-center">
                             
                             <a href="<?= base_url('carrito/agregar/' . $producto['id_producto']) ?>" class="btn btn-primary">Agregar al carrito</a>
