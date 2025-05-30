@@ -1,0 +1,76 @@
+    .contact-form1 {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        padding: 2rem;
+    }
+    .form-label {
+        font-weight: 500;
+        color: #2c3e50;
+    }
+
+    :root {
+        --bs-pink: #d07c9b;
+        --bs-dark-purple: #2a0839;
+      }
+      
+      .shadow-hover {
+        transition: all 0.3s ease;
+      }
+      
+      .shadow-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+      }
+      
+      .bi { transition: color 0.2s; }
+      .bi:hover { color: #0d6efd !important; }
+      
+          /* Hero Section */
+          .hero-section {
+              position: relative;
+              height: 100vh;
+              overflow: hidden;
+          }
+      
+          /* Contenedor del texto */
+          .hero-content {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              z-index: 3;
+              text-align: center;
+              color: white;
+              text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+          }
+      
+          /* Carrusel */
+          .carousel-inner {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100vh;
+              z-index: 1;
+          }
+      
+          .carousel-item img {
+              height: 100vh;
+              object-fit: cover;
+              filter: brightness(0.7);
+          }
+      
+          /* Footer Fix */
+          footer {
+              position: relative;
+              z-index: 2;
+          }
+      
+          /* En tu style.css o en un bloque <style> */
+      footer.footer-vavi {
+        background-color: #eef1ef;
+        color: #2a0839;
+      }
+
+      
