@@ -3,7 +3,10 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 97f0d22ea250cdf6313eb15ade326eb1df72f349
 class CarritoController extends Controller
 {
     public function agregar($id_producto)

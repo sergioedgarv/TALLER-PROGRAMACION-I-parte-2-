@@ -26,8 +26,13 @@
                     <div class="card h-100">
                         <?php if (!empty($producto['imagen'])): ?>
                             <img src="<?= esc($producto['imagen']) ?>" class="card-img-top" alt="<?= esc($producto['nombre']) ?>">
+<<<<<<< HEAD
                         <?php else: ?> <!-- eliminar este else y analizar mejor el if de arriba -->
                             <img src="img\1.jpg" class="card-img-top" alt="Imagen no disponible">
+=======
+                        <?php else: ?>
+                            <img src="/images/default-product.png" class="card-img-top" alt="Imagen no disponible">
+>>>>>>> 97f0d22ea250cdf6313eb15ade326eb1df72f349
                         <?php endif; ?>
                         <div class="card-body">
                             <h5 class="card-title"><?= esc($producto['nombre']) ?></h5>
