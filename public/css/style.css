@@ -73,4 +73,70 @@
         color: #2a0839;
       }
 
-      
+
+/*transicion que agregue para el navbar*/
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+  color: #000; /* Asegura texto negro */
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 1px;
+  background-color: black;
+  transition: width 0.2s ease-in-out;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+.navbar-nav .dropdown-toggle::after {
+  content: none !important;
+}
+
+
+/*
+    agregue mas estilo al submenu de catalogo porque me parecia bastante cuadrado.
+*/
+
+/* Estilo curvoso y con degradado para el submenú */
+.dropdown-menu {
+  border-radius: 12px;
+  background: linear-gradient(to bottom right, #ffffff, #f8f8f8);
+  border: none;
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  display: block; /* importante para animación */
+  visibility: hidden;
+  pointer-events: none;
+  min-width: 200px;
+}
+
+/* Mostrar menú al hacer hover */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Estilo de los ítems del submenú */
+.dropdown-menu .dropdown-item {
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #eeeeee;
+}
