@@ -4,7 +4,7 @@ class Contacto extends BaseController
 {
     public function index()
     {
-        return view('contacto');
+        return view('contacto', $this->data);
     }
     public function enviar()
     {

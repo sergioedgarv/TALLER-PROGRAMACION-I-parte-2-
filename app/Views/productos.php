@@ -1,5 +1,6 @@
 <?= view('templates/header') ?>
 <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
+
 <?php if(session()->getFlashdata('mensaje')): ?>
     <div class="alert alert-success">
         <?= session()->getFlashdata('mensaje') ?>
@@ -12,37 +13,38 @@
     <meta charset="UTF-8">
     <title>Productos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <style>
-    /* Para que el texto dentro de card-body no crezca demasiado y empuje el footer */
     .card-body {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
     }
-    /* Limitar la altura de la descripción */
+
     .card-text.descripcion {
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 3; /* número de líneas visibles */
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
     }
-    /* Imagenes de tamaño uniforme */
+
     .card-img-top {
         height: 400px;
         width: 100%;
         object-fit: cover;
         object-position: center;
     }
-</style>
-
+    </style>
 </head>
 <body>
 <div class="container mt-4">
 
-    <h1>Productos disponibles</h1>
+    <h1>
+        Productos disponibles
+        <?= isset($categoria) ? 'en: <span class="text-primary">' . esc($categoria) . '</span>' : '' ?>
+    </h1>
 
     <?php if (!empty($productos)): ?>
         <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -50,9 +52,7 @@
                 <div class="col">
                     <div class="card h-100 d-flex flex-column">
                         <?php if (!empty($producto['imagen'])): ?>
-                            <img src="<?= esc($producto['imagen']) ?>" class="card-img-top" alt="<?= esc($producto['nombre']) ?>">
-                        <?php else: ?>
-                            <img src="img/1.jpg" class="card-img-top" alt="Imagen no disponible">
+                            <img src="<?= base_url('img/' . basename($producto['imagen'])) ?>" class="card-img-top" alt="<?= esc($producto['nombre']) ?>">
                         <?php endif; ?>
 
                         <div class="card-body">
@@ -69,7 +69,7 @@
             <?php endforeach; ?>
         </div>
     <?php else: ?>
-        <p>No hay productos disponibles.</p>
+        <p>No hay productos disponibles en esta categoría.</p>
     <?php endif; ?>
 
 </div>

@@ -4,6 +4,6 @@ class Quienes extends BaseController
 {
     public function index()
     {
-        return view('quienes_somos');
+        return view('quienes_somos', $this->data);
     }
 }

@@ -4,6 +4,7 @@ class Compras extends BaseController
 {
     public function index()
     {
-        return view('compras');
+        return view('compras', $this->data);
     }
 }
+

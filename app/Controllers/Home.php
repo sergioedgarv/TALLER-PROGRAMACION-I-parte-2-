@@ -5,10 +5,12 @@ class Home extends BaseController
 {
     public function index()
     {
-        $data['title'] = 'Mi Página Personalizada';
-        return view('home', $data);
+        // Agregar datos específicos para esta vista
+        $this->data['title'] = 'Mi Página Personalizada';
+
+        // Pasar $this->data (que incluye 'categorias' cargadas en BaseController) a la vista
+        return view('home', $this->data);
     }
 }
-
 
 

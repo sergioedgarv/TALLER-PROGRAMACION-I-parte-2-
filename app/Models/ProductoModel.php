@@ -6,10 +6,17 @@ class ProductoModel extends Model
 {
     protected $table = 'producto';
     protected $primaryKey = 'id_producto';
-    protected $allowedFields = ['nombre', 'descripcion', 'precio', 'imagen', 'activo'];
+    protected $allowedFields = ['nombre', 'descripcion', 'precio', 'imagen', 'stock', 'id_faraon'];
 
-    public function obtenerProductosActivos()
+    public function obtenerProductosStock()
     {
-        return $this->where('activo', 1)->findAll();
+        return $this->where('stock >', 0)->findAll();
+    }
+
+    public function obtenerPorCategoria($id_faraon)
+    {
+        return $this->where('stock >', 0)
+                    ->where('id_faraon', $id_faraon)
+                    ->findAll();
     }
 }

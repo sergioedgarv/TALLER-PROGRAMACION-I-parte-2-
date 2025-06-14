@@ -8,6 +8,7 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use App\Models\CategoriaModel;
 
 /**
  * Class BaseController
@@ -38,21 +39,27 @@ abstract class BaseController extends Controller
     protected $helpers = [];
 
     /**
-     * Be sure to declare properties for any property fetch you initialized.
-     * The creation of dynamic property is deprecated in PHP 8.2.
+     * Array to hold data shared with views.
+     *
+     * @var array
      */
-    // protected $session;
+    protected $data = [];
 
     /**
      * @return void
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        // Do Not Edit This Line
+        // No modificar esta línea
         parent::initController($request, $response, $logger);
 
-        // Preload any models, libraries, etc, here.
+        // Cargar modelo de categorías
+        $categoriaModel = new CategoriaModel();
 
-        // E.g.: $this->session = service('session');
+        // Obtener todas las categorías para usar en el navbar (header)
+        $this->data['categorias'] = $categoriaModel->findAll();
+
+        // Si usas sesión, puedes iniciarla aquí
+        // $this->session = service('session');
     }
 }

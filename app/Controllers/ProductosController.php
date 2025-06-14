@@ -1,37 +1,35 @@
 <?php
-
 namespace App\Controllers;
+
 use Config\Database;
 use Exception;
 use App\Models\ProductoModel;
+use App\Models\CategoriaModel;
 
 class ProductosController extends BaseController
 {
     public function index()
     {
         try {
-            $db = Database::connect();
             $productoModel = new ProductoModel();
+            $categoriaModel = new CategoriaModel();
 
-            if ($db->connect()) {
-                // Obtener solo productos activos
-                $productos = $productoModel->obtenerProductosActivos();
+            $productos = $productoModel->obtenerProductosStock();
+            $categorias = $categoriaModel->findAll();
 
-                $data = [
-                    'conexion' => 'si',
-                    'productos' => $productos
-                ];
-            } else {
-                $data = [
-                    'conexion' => 'no',
-                    'productos' => []
-                ];
-            }
+            $data = [
+                'conexion' => 'si',
+                'productos' => $productos,
+                'categorias' => $categorias,
+                'categoria' => 'Todos'
+            ];
         } catch (Exception $e) {
             $data = [
                 'conexion' => 'error!!',
                 'error_message' => $e->getMessage(),
-                'productos' => []
+                'productos' => [],
+                'categorias' => [],
+                'categoria' => 'Todos'
             ];
         }
 
