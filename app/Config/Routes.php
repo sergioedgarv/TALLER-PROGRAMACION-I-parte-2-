@@ -15,16 +15,29 @@ $routes->post('/contacto/enviar', 'Contacto::enviar');
 
 //$routes->get('productos', 'ProductosController::index');
 
-
-//verificar que esto funcione para lo que es el filtrado segun categoria 
-$routes->get('catalogo', 'CatalogoController::index'); //este exactamente igual al codigo de la linea 16
-$routes->get('catalogo/(:segment)', 'CatalogoController::categoria/$1');
-
-
 $routes->get('carrito/agregar/(:num)', 'CarritoController::agregar/$1');
 $routes->get('carrito', 'CarritoController::ver');
+$routes->get('catalogo', 'CatalogoController::index');
+$routes->get('catalogo/(:num)', 'CatalogoController::categoria/$1');
 
 
 
+$routes->post('carrito/aumentar/(:num)', 'CarritoController::aumentar/$1');
+$routes->post('carrito/disminuir/(:num)', 'CarritoController::disminuir/$1');
+$routes->post('carrito/eliminar/(:num)', 'CarritoController::eliminar/$1');
+$routes->get('carrito', 'CarritoController::ver');
 
+///probando lo de comprar ahora button
+$routes->get('checkout', 'CheckoutController::index');
+$routes->post('checkout/procesar', 'CheckoutController::procesar');
+$routes->get('gracias', 'CheckoutController::gracias');
 
+/*El usuario ve el carrito y puede hacer clic en "Comprar ahora".
+
+Se abre el formulario de checkout para ingresar datos.
+
+Se valida y procesa la compra (aquí solo vaciamos el carrito).
+
+Se muestra una página de agradecimiento.
+
+Puedes ampliar el proceso para guardar la orden en base de datos y conectar con pasarelas de pago. */
