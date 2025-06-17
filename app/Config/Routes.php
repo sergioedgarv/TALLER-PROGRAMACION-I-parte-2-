@@ -27,6 +27,7 @@ $routes->post('carrito/disminuir/(:num)', 'CarritoController::disminuir/$1');
 $routes->post('carrito/eliminar/(:num)', 'CarritoController::eliminar/$1');
 $routes->get('carrito', 'CarritoController::ver');
 
+
 ///probando lo de comprar ahora button
 $routes->get('checkout', 'CheckoutController::index');
 $routes->post('checkout/procesar', 'CheckoutController::procesar');
