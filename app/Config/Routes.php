@@ -20,11 +20,12 @@ $routes->post('/contacto/enviar', 'Contacto::enviar');
 $routes->get('catalogo', 'CatalogoController::index'); //este exactamente igual al codigo de la linea 16
 $routes->get('catalogo/(:segment)', 'CatalogoController::categoria/$1');
 
-
+//sin realizar aun 
 $routes->get('carrito/agregar/(:num)', 'CarritoController::agregar/$1');
 $routes->get('carrito', 'CarritoController::ver');
 
 
-
+//ruta del login
+$routes->get('login','Login::index');
 
 
