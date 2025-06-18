@@ -1,8 +1,6 @@
 <?= view('templates/header') ?>
 <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
 
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -63,15 +61,26 @@ footer {
     object-position: center;
 }
 </style>
+</head>
+<body>
 
 <div class="content-wrap">
     <div class="container mt-4">
 
-        <?php if(session()->getFlashdata('mensaje')): ?>
-            <div class="alert alert-success">
+ <!-- Mostrar mensaje flash si existe -->
+   <?php if(session()->getFlashdata('mensaje')): ?>
+            <div class="alert alert-warning text-center">
                 <?= session()->getFlashdata('mensaje') ?>
             </div>
         <?php endif; ?>
+
+
+
+
+        <!-- Título dinámico: muestra categoría o término buscado -->
+        <h2 class="text-white mb-4 text-center">
+            <?= isset($categoria) ? esc($categoria) : 'Productos' ?>
+        </h2>
 
         <?php if (!empty($productos)): ?>
             <div class="row row-cols-1 row-cols-md-3 g-4">
