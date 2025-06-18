@@ -14,7 +14,8 @@ class CarritoController extends Controller
 
         if (isset($carrito[$id_producto])) {
             $carrito[$id_producto]['cantidad']++;
-            $mensaje = 'Cantidad aumentada en el carrito.';
+            $cantidad = $carrito[$id_producto]['cantidad'];
+            $mensaje = "¡Genial! Ahora tienes $cantidad unidades de este producto en tu carrito.";
         } else {
             $carrito[$id_producto] = [
                 'id_producto' => $id_producto,
@@ -28,6 +29,7 @@ class CarritoController extends Controller
         return redirect()->to('/catalogo')->with('mensaje', $mensaje);
     }
 
+    // Resto de métodos sin cambios...
     public function ver()
     {
         $session = session();
@@ -50,7 +52,7 @@ class CarritoController extends Controller
 
         $data['carrito'] = $carritoCompleto;
         $data['total'] = array_sum(array_column($carritoCompleto, 'subtotal'));
-        $data['mensaje'] = $session->getFlashdata('mensaje'); // obtener mensaje flash
+        $data['mensaje'] = $session->getFlashdata('mensaje');
 
         return view('carrito_ver', $data);
     }
@@ -63,7 +65,8 @@ class CarritoController extends Controller
         if (isset($carrito[$id_producto])) {
             $carrito[$id_producto]['cantidad']++;
             $session->set('carrito', $carrito);
-            $mensaje = 'Cantidad aumentada.';
+            $cantidad = $carrito[$id_producto]['cantidad'];
+            $mensaje = "¡Cantidad aumentada! Ahora tienes $cantidad unidades de este producto.";
         } else {
             $mensaje = 'Producto no encontrado en el carrito.';
         }

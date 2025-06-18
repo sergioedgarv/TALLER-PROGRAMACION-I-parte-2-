@@ -7,3 +7,4 @@ class Quienes extends BaseController
         return view('quienes_somos', $this->data);
     }
 }
+//Se agrega $this->data para que aparezca las categorias en catalogo

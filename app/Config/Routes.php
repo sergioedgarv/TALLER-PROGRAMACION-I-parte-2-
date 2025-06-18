@@ -42,3 +42,5 @@ Se valida y procesa la compra (aquí solo vaciamos el carrito).
 Se muestra una página de agradecimiento.
 
 Puedes ampliar el proceso para guardar la orden en base de datos y conectar con pasarelas de pago. */
+
+$routes->get('mercadopago', 'MercadoPagoController::crearPreferencia');
