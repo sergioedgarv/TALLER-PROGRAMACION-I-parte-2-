@@ -43,4 +43,11 @@ Se muestra una página de agradecimiento.
 
 Puedes ampliar el proceso para guardar la orden en base de datos y conectar con pasarelas de pago. */
 
+
+//solo probando
 $routes->get('mercadopago', 'MercadoPagoController::crearPreferencia');
+
+
+//buscador
+
+$routes->get('buscar', 'ProductosController::buscar');

@@ -59,12 +59,10 @@
     <section class="hero-section">
         <div class="hero-content">
 
-
-<h1 class="display-3 fw-bold fuente-montserrat-black-italic">¡WELCOME, al mundo de VAVI!</h1>
-<p class="lead fs-4 fuente-montserrat-black-italic">
+<h1 class="display-4 fw-bold fuente-montserrat-black-italic">¡WELCOME, al mundo de VAVI!</h1>
+<p class="lead fs-4 fuente-josefin">
     <span class="texto-seleccionado">Donde cada día, sos más vos.</span>
 </p>
-
 
         </div>
 
