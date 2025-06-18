@@ -33,6 +33,59 @@
     /* Quita el comportamiento "pegajoso" en dispositivos táctiles */
     pointer-events: none;
   }
+  .bi-person-circle {
+  color: #d63384;           
+  font-size: 2rem;       
+  margin-right: 10px;    
+ }
+ .user-text
+ {
+  background-color: rgba(214, 51, 132, 0.4);
+  color: #210124;
+  padding: 2px 6px;
+  border-radius: 4px;
+ }
+
+ .user-menu {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+}
+
+/* El menú emergente */
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%; /* un poco abajo del texto */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #d63384cc; /* rosa con transparencia */
+  padding: 8px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 1000;
+  min-width: 120px;
+  text-align: center;
+} 
+
+/* Mostrar el menú al hacer hover */
+.user-menu:hover .user-dropdown {
+  display: block;
+}
+
+/* Botón dentro del menú */
+.user-dropdown a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.user-dropdown a:hover {
+  text-decoration: underline;
+}
+ 
 </style>
 </head>
 
@@ -101,13 +154,30 @@
         </ul>
       </div>
 
-      <!-- Carrito a la derecha -->
-      <div class="d-flex order-lg-3">
-<a class="btn btn-pink text-white rounded-pill px-4" href="<?= base_url('carrito') ?>">
-  <i class="bi bi-cart"></i> Carrito
-</a>
+      <!-- Carrito a la derecha
+      con logo de usuario  
+      -->
+    <div class="d-flex align-items-center gap-3 order-lg-3">
+  
+  <a class="btn btn-pink text-white rounded-pill px-4" href="<?= base_url('carrito') ?>">
+    <i class="bi bi-cart"></i> Carrito
+  </a>
+
+<div class="d-flex align-items-center">
+  <div class="user-menu d-flex align-items-center">
+    <i class="bi bi-person-circle fs-4 me-2" style="color: #d63384;"></i>
+    <?php if(session()->get('logged_in')): ?>
+      <span class="user-text">Hola <?= esc(session()->get('nombre')) ?></span>
+      <div class="user-dropdown">
+        <a href="<?= base_url('logout') ?>">Cerrar sesión</a>
       </div>
-    </div>
+    <?php else: ?>
+      <a href="<?= base_url('Login') ?>" class="text-decoration-none text-pink fw-semibold">Iniciar sesión</a>
+    <?php endif; ?>
+  </div>
+</div>
+
+</div>
   </nav>
 
 

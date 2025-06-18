@@ -1,111 +1,158 @@
-<?= view('templates/header') ?>
+  <?= view('templates/header') ?>  
+  
 
-<!DOCTYPE html>
-<html lang="es"
-
-<head>
 <style>
+  /*Estilos del login 
+   A una etiqueta style de pegarme un tiro ¿PORQUE NO ANDAN LOS ENLANCES AAAAAA!!!!!!!!!
+   perdon me altere.
+  
+  */
 
 
-  body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f0f2f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.card-container {
+  width: 350px;
+  height: 480px;
+  perspective: 1000px;
+  position: relative;
 }
 
-.login-container {
-  background: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+.card-side {
   width: 100%;
-  max-width: 350px;
-  text-align: center;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 0.8s ease;
 }
 
-.login-container h2 {
-  margin-bottom: 1.5rem;
+.card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-container.flipped .card-front {
+  transform: rotateY(180deg);
+}
+
+.card-container.flipped .card-back {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.form-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
   color: #333;
 }
 
-.login-container form input {
-  width: 100%;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+.form-box input {
+  margin-bottom: 15px;  
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
 }
 
-.login-container form button {
-  width: 100%;
-  padding: 0.8rem;
-  background: #007bff;
+.form-box button {
+  background-color: #995FA3;
   color: white;
   border: none;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  padding: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
 }
 
-.login-container form button:hover {
-  background: #0056b3;
+.form-box button:hover {
+  background-color: #995FA3;
 }
 
-.divider {
-  margin: 1rem 0;
-  font-size: 0.9rem;
-  color: #666;
-}
+.brand-name {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0a0e2f; 
+  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif; /* si usás esta fuente */
+  text-shadow:
+    0 0 2px #2F1B25,
+    0 0 4px #521945,
+    0 0 6px #912F56 ,
+    0 0 8px #BD2D87,
+    0 0 10px #DB504A;
 
-.google-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  text-decoration: none;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  padding: 0.7rem;
-  color: #333;
-  transition: background 0.3s;
-}
 
-.google-btn:hover {
-  background: #f5f5f5;
-}
 
-.google-btn img {
-  width: 20px;
-  height: 20px;
 }
-
 </style>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="login-container">
-    <h2>Iniciar Sesión</h2>
-    <form action="tu_backend_login.php" method="POST">
-      <input type="text" name="usuario" placeholder="Usuario" required>
-      <input type="password" name="clave" placeholder="Contraseña" required>
-      <button type="submit">Ingresar</button>
-    </form>
-    <div class="divider">o</div>
-    <a href="tu_login_con_google.php" class="google-btn">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" />
-      Iniciar sesión con Google
-    </a>
-  </div>
-</body>
-</html>
 
+
+<body>
+
+<div class="auth-container" style="background-image: url('<?= base_url('img/9.jpg') ?>'); background-size: cover; background-position: center; min-height: 90vh;">
+
+  <div class="card-container" id="card">
+    <!-- Login Form -->
+    <div class="card-side card-front">
+
+      <div class="form-box">
+
+        <div class="brand-name">VAVI</div>
+        <h2>Iniciar Sesión</h2>
+    
+              <?php if (session()->getFlashdata('error')): ?>
+              <div class="alert alert-danger">
+              <?= session()->getFlashdata('error') ?>
+              </div>
+              <?php endif; ?>
+
+              <?php if (session()->getFlashdata('success')): ?>
+                <div class="alert alert-success">
+                  <?= session()->getFlashdata('success') ?>
+                </div>
+              <?php endif; ?>
+              
+        <form method="post" action="<?= base_url('login/authenticate') ?>">
+          <input type="email" name="email" placeholder="Correo electrónico" required>
+          <input type="password" name="password" placeholder="Contraseña" required>
+          <button type="submit">Ingresar</button>
+        </form>
+        <p>¿No tienes cuenta? <button onclick="flipCard()">Regístrate</button></p>
+      </div>
+    </div>
+
+    <!-- Register Form -->
+    <div class="card-side card-back">
+      <div class="form-box">
+           <div class="brand-name">VAVI</div>
+        <h2>Registrarse</h2>
+        <form method="post" action="<?= base_url('register/save') ?>">
+          <input type="text" name="nombre" placeholder="Nombre" required>
+          <input type="text" name="apellido" placeholder="Apellido" required>
+          <input type="email" name="email" placeholder="Correo electrónico" required>
+          <input type="password" name="password" placeholder="Contraseña" required>
+          <button type="submit">Crear cuenta</button>
+        </form>
+        <p>¿Ya tienes cuenta? <button onclick="flipCard()">Iniciar sesión</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="<?= base_url('js/flip.js') ?>"></script>
+
+</body>
 
 <?= view('templates/footer') ?>

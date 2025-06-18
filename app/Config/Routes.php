@@ -20,8 +20,16 @@ $routes->get('carrito', 'CarritoController::ver');
 $routes->get('catalogo', 'CatalogoController::index');
 $routes->get('catalogo/(:num)', 'CatalogoController::categoria/$1');
 
+//ruta para el login
+$routes->get('Login','Login::index');
+$routes->post('login/authenticate', 'Login::authenticate');
+$routes->get('logout', 'Login::logout');
+$routes->post('register/save', 'Register::save');
 
+//falta implementar esto
+$routes->get('admin','Admin::index');
 
+/////
 $routes->post('carrito/aumentar/(:num)', 'CarritoController::aumentar/$1');
 $routes->post('carrito/disminuir/(:num)', 'CarritoController::disminuir/$1');
 $routes->post('carrito/eliminar/(:num)', 'CarritoController::eliminar/$1');
