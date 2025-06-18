@@ -1,29 +1,53 @@
 <?= view('templates/header') ?>
 <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
 
-<!-- Google Fonts: Josefin Sans -->
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+<!-- Google Fonts: Josefin Sans + Montserrat -->
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
 
 <style>
     .fuente-josefin {
         font-family: 'Josefin Sans', sans-serif;
     }
 
-    .texto-seleccionado {
-    background-color: rgba(0, 123, 255, 0.4);
-    color: white;
-    padding: 0 4px;
-    border-radius: 2px;
+.fuente-montserrat-black-italic {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+
 </style>
 
 <style>
 .texto-seleccionado {
-    background-color: rgba(3, 44, 88, 0.7); /* azul intenso */
+    background-color: rgba(4, 42, 82, 0.7); /* azul intenso */
     color: white;
-    border-radius: 2px;
-    /* No padding ni margen para que el fondo cubra solo el texto */
-    display: inline; /* o inline-block si quieres */
+    border-radius: 8px;
+    display: inline-block;
+    padding: 2px 3px;
+    line-height: 1.5;
+
+    /* Sombras suaves */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+
+    /* Transición para entrada */
+    animation: fadeIn 0.3s ease-in-out;
 }
+
+/* Animación */
+@keyframes fadeIn {
+    0% {
+        opacity: 1;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
 
 </style>
 
@@ -34,10 +58,14 @@
     <!-- Sección Hero -->
     <section class="hero-section">
         <div class="hero-content">
-            <h1 class="display-3 fw-bold fuente-josefin">¡WELCOME, al mundo de VAVI!</h1>
-        <p class="lead fs-4 fuente-josefin">
+
+
+<h1 class="display-3 fw-bold fuente-montserrat-black-italic">¡WELCOME, al mundo de VAVI!</h1>
+<p class="lead fs-4 fuente-montserrat-black-italic">
     <span class="texto-seleccionado">Donde cada día, sos más vos.</span>
 </p>
+
+
         </div>
 
         <!-- Carrusel -->
