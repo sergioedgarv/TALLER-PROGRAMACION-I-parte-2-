@@ -1,5 +1,6 @@
 <?= view('templates/header') ?>
 <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
+<?= $this->renderSection('content') ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -31,13 +32,14 @@ body {
     padding: 40px 0;
     min-height: 500px; /* asegura altura visible incluso sin contenido */
 }
-
+/* esto no va posiblmente la idea era separar mas el cuerpo de la pag, de lo que respecta el footer 
 footer {
     flex-shrink: 0;
     background-color: #f8f9fa;
     padding: 20px 0;
     text-align: center;
 }
+*/
 
 .card-body {
     flex-grow: 1;
@@ -60,6 +62,10 @@ footer {
     object-fit: cover;
     object-position: center;
 }
+.sombra_blanca {
+  text-shadow: 3px 3px 5px #fff;
+}
+
 </style>
 </head>
 <body>
@@ -78,7 +84,7 @@ footer {
 
 
         <!-- Título dinámico: muestra categoría o término buscado -->
-        <h2 class="text-white mb-4 text-center">
+        <h2 class="text-black mb-4 text-center sombra_blanca">
             <?= isset($categoria) ? esc($categoria) : 'Productos' ?>
         </h2>
 
@@ -105,7 +111,7 @@ footer {
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
-            <div class="text-center text-white py-5">
+            <div class="text-center text-black py-5">
                 <h3>No hay productos disponibles en esta categoría.</h3>
             </div>
         <?php endif; ?>

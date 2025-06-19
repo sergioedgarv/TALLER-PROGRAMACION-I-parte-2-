@@ -43,57 +43,68 @@
     }
 
     .user-text {
-  background-color: rgba(214, 51, 132, 0.4); /* color #d63384 con 40% de opacidad */
-  padding: 2px 6px;
-  border-radius: 4px;
-  color: #fff;
-  font-weight: 600;
-}
+      background-color: rgba(214, 51, 132, 0.4);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 600;
+    }
 
-.user-container:hover .user-text {
-  display: inline;
-}
+    .user-container:hover .user-text {
+      display: inline;
+    }
 
-.user-menu {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  color: white;
-}
+    .user-menu {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      color: white;
+    }
 
-/* El menú emergente */
-.user-dropdown {
-  display: none;
-  position: absolute;
-  top: 110%; /* un poco abajo del texto */
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #d63384cc; /* rosa con transparencia */
-  padding: 8px 12px;
-  border-radius: 6px;
-  white-space: nowrap;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  z-index: 1000;
-  min-width: 120px;
-  text-align: center;
-}
+    .user-dropdown {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #d63384cc;
+      padding: 8px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 1000;
+      min-width: 120px;
+      text-align: center;
+    }
 
-/* Mostrar el menú al hacer hover */
-.user-menu:hover .user-dropdown {
-  display: block;
-}
+    .user-menu:hover .user-dropdown {
+      display: block;
+    }
 
-/* Botón dentro del menú */
-.user-dropdown a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-}
+    .user-dropdown a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
 
-.user-dropdown a:hover {
-  text-decoration: underline;
-}
+    .user-dropdown a:hover {
+      text-decoration: underline;
+    }
 
+    /* Previene saltos de línea en los ítems */
+    .navbar-nav .nav-link {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 991.98px) {
+      .search-form {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+    ///////////
+
+    
   </style>
 </head>
 
@@ -102,58 +113,43 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
   <div class="container-fluid">
 
-    <!-- Logo -->
-    <a class="navbar-brand d-flex align-items-center gap-1 order-0" href="<?= base_url('/') ?>">
-      <i class="bi bi-stars"></i> VAVI
-    </a>
+    <!-- Logo + Buscador -->
+    <div class="d-flex align-items-center">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center gap-1 me-3" href="<?= base_url('/') ?>">
+        <i class="bi bi-stars"></i> VAVI
+      </a>
 
-    <!-- Botón toggler para móvil -->
-    <button
-      class="navbar-toggler order-2"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+      <!-- Buscador -->
+      <form class="d-none d-lg-flex align-items-center" role="search" action="<?= base_url('buscar') ?>" method="GET">
+        <input
+          class="form-control form-control-sm me-2"
+          type="search"
+          placeholder="Buscar productos..."
+          aria-label="Buscar"
+          name="q"
+          required
+        />
+        <button class="btn btn-outline-pink btn-sm" type="submit">Buscar</button>
+      </form>
+    </div>
+
+    <!-- Toggler para móvil -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Buscador visible siempre -->
-<form class="d-flex" role="search" action="<?= base_url('buscar') ?>" method="GET">
-  <input
-    class="form-control form-control-sm me-2"
-    type="search"
-    placeholder="Buscar productos..."
-    aria-label="Buscar"
-    name="q"
-    required
-  />
-  <button class="btn btn-outline-pink btn-sm" type="submit">Buscar</button>
-</form>
+    <!-- Menú + Carrito + Usuario -->
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
 
-
-    <!-- Menú colapsable -->
-    <div class="collapse navbar-collapse order-3" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('') ?>">Principal</a>
-        </li>
+      <!-- Menú -->
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 align-items-center">
+        <li class="nav-item"><a class="nav-link" href="<?= base_url('') ?>">Principal</a></li>
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="<?= base_url('catalogo') ?>"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Catálogo
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown">Catálogo</a>
+          <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="<?= base_url('catalogo') ?>">Todos</a></li>
-            <?php if (isset($categorias) && !empty($categorias)): ?>
+            <?php if (isset($categorias)): ?>
               <?php foreach ($categorias as $cat): ?>
                 <li>
                   <a class="dropdown-item" href="<?= base_url('catalogo/' . $cat['id_categoria']) ?>">
@@ -169,36 +165,31 @@
         <li class="nav-item"><a class="nav-link" href="<?= base_url('contacto') ?>">Contacto</a></li>
         <li class="nav-item"><a class="nav-link" href="<?= base_url('terminos') ?>">Términos y condiciones</a></li>
       </ul>
-    </div>
 
-    <!-- Carrito a la derecha -->
-<!-- Contenedor para carrito y usuario juntos -->
-<div class="d-flex align-items-center order-4 gap-3">
+      <!-- Carrito + Usuario -->
+      <div class="d-flex align-items-center gap-3">
+<a class="btn btn-pink text-white rounded-pill px-4 d-flex align-items-center gap-2" href="<?= base_url('carrito') ?>">
+  <i class="bi bi-cart"></i>
+  <span>Carrito</span>
+</a>
 
-  <!-- Carrito -->
-  <a class="btn btn-pink text-white rounded-pill px-4" href="<?= base_url('carrito') ?>">
-    <i class="bi bi-cart"></i> Carrito
-  </a>
 
-  <!-- Usuario / Login -->
-  <div class="user-menu d-flex align-items-center position-relative">
-    <i class="bi bi-person-circle fs-4 me-2" style="color: #d63384;"></i>
-    <?php if(session()->get('logged_in')): ?>
-      <span class="user-text">Hola <?= esc(session()->get('nombre')) ?></span>
-      <div class="user-dropdown">
-        <a href="<?= base_url('logout') ?>">Cerrar sesión</a>
+
+        <div class="user-menu d-flex align-items-center position-relative">
+          <i class="bi bi-person-circle fs-4 me-2" style="color: #d63384;"></i>
+          <?php if(session()->get('logged_in')): ?>
+            <span class="user-text">Hola <?= esc(session()->get('nombre')) ?></span>
+            <div class="user-dropdown">
+              <a href="<?= base_url('logout') ?>">Cerrar sesión</a>
+            </div>
+          <?php else: ?>
+            <a href="<?= base_url('Login') ?>" class="text-decoration-none text-pink fw-semibold">Iniciar sesión</a>
+          <?php endif; ?>
+        </div>
       </div>
-    <?php else: ?>
-      <a href="<?= base_url('Login') ?>" class="text-decoration-none text-pink fw-semibold">Iniciar sesión</a>
-    <?php endif; ?>
-  </div>
-
-</div>
-
+    </div>
   </div>
 </nav>
-
-
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

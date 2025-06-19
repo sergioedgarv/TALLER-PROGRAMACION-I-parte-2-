@@ -23,17 +23,23 @@
     z-index: 0;
   }
 
-  /* Contenido por encima del overlay */
+   /* Contenido por encima del overlay */
   .content-wrapper > main {
     position: relative;
     z-index: 1;
-    color: #fff; /* Texto blanco para mejor contraste */
+    color: #000000; /* Texto blanco para mejor contraste */
   }
+
+  .sombreado_cont {
+  text-shadow: 1px 1px 6px #000000;
+  color: #ffffff;
+}
 </style>
 
 <div class="content-wrapper">
   <main class="container py-5">
-    <h1 class="text-center mb-4">Contactanos</h1>
+    <h1 class="text-center white mb-4 sombreado_cont">Contactanos</h1>
+
     
     <div class="row justify-content-center">
       <div class="col-lg-8">
