@@ -26,14 +26,24 @@ $routes->post('login/authenticate', 'Login::authenticate');
 $routes->get('logout', 'Login::logout');
 $routes->post('register/save', 'Register::save');
 
-//falta implementar esto
-$routes->get('admin','Admin::index');
+
+
+// ruta para el administrador
+$routes->get('admin', 'AdminController::index', ['filter' => 'authAdmin']);
+
+$routes->get('productos/crear', 'AdminController::crear', ['filter' => 'authAdmin']);
+$routes->post('productos/guardar', 'AdminController::guardar', ['filter' => 'authAdmin']);
+$routes->get('productos/editar/(:num)', 'AdminController::editar/$1', ['filter' => 'authAdmin']);
+$routes->post('productos/actualizar/(:num)', 'AdminController::actualizar/$1', ['filter' => 'authAdmin']);
+$routes->get('productos/eliminar/(:num)', 'AdminController::eliminar/$1', ['filter' => 'authAdmin']);
 
 /////
 $routes->post('carrito/aumentar/(:num)', 'CarritoController::aumentar/$1');
 $routes->post('carrito/disminuir/(:num)', 'CarritoController::disminuir/$1');
 $routes->post('carrito/eliminar/(:num)', 'CarritoController::eliminar/$1');
 $routes->get('carrito', 'CarritoController::ver');
+
+
 
 
 ///probando lo de comprar ahora button
