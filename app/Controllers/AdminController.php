@@ -9,7 +9,6 @@ class AdminController extends BaseController
     public function index()
     {
         $productoModel = new ProductoModel();
-        // Idealmente usar método que traiga nombre de categoría con join si quieres
         $productos = $productoModel->findAll();
 
         return view('admin/dashboard', ['productos' => $productos]);
@@ -19,23 +18,31 @@ class AdminController extends BaseController
     {
         $categoriaModel = new CategoriaModel();
         $categorias = $categoriaModel->findAll();
-
         return view('admin/crear', ['categorias' => $categorias]);
     }
 
     public function guardar()
     {
-        // Validación básica (podés ampliar reglas)
+        helper(['form', 'url']);
+
         if (!$this->validate([
-            'nombre'    => 'required|min_length[3]',
+            'nombre'      => 'required|min_length[3]',
             'descripcion' => 'required',
-            'precio'    => 'required|decimal',
-            'stock'     => 'required|integer',
-            'id_faraon' => 'required|integer'
+            'precio'      => 'required|decimal',
+            'stock'       => 'required|integer',
+            'id_faraon'   => 'required|integer',
+            'imagen'      => 'uploaded[imagen]|max_size[imagen,2048]|is_image[imagen]|mime_in[imagen,image/jpg,image/jpeg,image/png]'
         ])) {
             return redirect()->back()
                 ->withInput()
-                ->with('mensaje', 'Por favor completá todos los campos correctamente.');
+                ->with('mensaje', 'Por favor completá todos los campos correctamente. Verificá la imagen.');
+        }
+
+        $imagen = $this->request->getFile('imagen');
+        $nombreImagen = $imagen->getRandomName();
+
+        if ($imagen->isValid() && !$imagen->hasMoved()) {
+            $imagen->move(FCPATH . 'img', $nombreImagen);
         }
 
         $productoModel = new ProductoModel();
@@ -45,7 +52,8 @@ class AdminController extends BaseController
             'descripcion' => $this->request->getPost('descripcion'),
             'precio'      => $this->request->getPost('precio'),
             'stock'       => $this->request->getPost('stock'),
-            'id_faraon'   => $this->request->getPost('id_faraon')
+            'id_faraon'   => $this->request->getPost('id_faraon'),
+            'imagen'      => $nombreImagen
         ]);
 
         return redirect()->to('/admin')->with('mensaje', 'Producto agregado con éxito');
@@ -71,27 +79,43 @@ class AdminController extends BaseController
 
     public function actualizar($id)
     {
-        // Validación básica (podés ampliar reglas)
+        helper(['form', 'url']);
+
         if (!$this->validate([
-            'nombre'    => 'required|min_length[3]',
+            'nombre'      => 'required|min_length[3]',
             'descripcion' => 'required',
-            'precio'    => 'required|decimal',
-            'stock'     => 'required|integer',
-            'id_faraon' => 'required|integer'
+            'precio'      => 'required|decimal',
+            'stock'       => 'required|integer',
+            'id_faraon'   => 'required|integer',
+            'imagen'      => 'permit_empty|is_image[imagen]|mime_in[imagen,image/jpg,image/jpeg,image/png]|max_size[imagen,2048]'
         ])) {
             return redirect()->back()
                 ->withInput()
-                ->with('mensaje', 'Por favor completá todos los campos correctamente.');
+                ->with('mensaje', 'Por favor completá todos los campos correctamente. Verificá la imagen si subiste una.');
         }
 
         $productoModel = new ProductoModel();
+        $producto = $productoModel->find($id);
+
+        $imagen = $this->request->getFile('imagen');
+        $nombreImagen = $producto['imagen'];
+
+        if ($imagen && $imagen->isValid() && !$imagen->hasMoved()) {
+            $nombreImagen = $imagen->getRandomName();
+            $imagen->move(FCPATH . 'img', $nombreImagen);
+
+            if ($producto['imagen'] && file_exists(FCPATH . 'img/' . $producto['imagen'])) {
+                unlink(FCPATH . 'img/' . $producto['imagen']);
+            }
+        }
 
         $productoModel->update($id, [
             'nombre'      => $this->request->getPost('nombre'),
             'descripcion' => $this->request->getPost('descripcion'),
             'precio'      => $this->request->getPost('precio'),
             'stock'       => $this->request->getPost('stock'),
-            'id_faraon'   => $this->request->getPost('id_faraon')
+            'id_faraon'   => $this->request->getPost('id_faraon'),
+            'imagen'      => $nombreImagen
         ]);
 
         return redirect()->to('/admin')->with('mensaje', 'Producto actualizado con éxito');
