@@ -198,7 +198,8 @@
     <div class="row justify-content-center mt-4">
         <div class="col-md-8 text-center">
             <h5>¿Tenés dudas?</h5>
-            <p>Podés escribirnos por <a href="https://wa.me/549XXXXXXXXXX" target="_blank">WhatsApp</a> o a nuestro <a href="mailto:info@tutienda.com">email</a>. ¡Estamos para ayudarte!</p>
+            <p>Podés escribirnos por <a href="https://wa.me/5493795005298?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios.%20Muchas%20gracias.
+" target="_blank">WhatsApp</a> o a nuestro <a href="mailto:sergioedgarv@gmail.com">email</a>. ¡Estamos para ayudarte!</p>
         </div>
     </div>
 </div>
