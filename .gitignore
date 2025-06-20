@@ -3,3 +3,7 @@ writable/session/ci_session*
 
 # Ignorar archivos de logs
 writable/logs/*.log
+
+# Ignorar archivos de debugbar
+writable/debugbar/*.json
+
