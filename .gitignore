@@ -1,0 +1,5 @@
+# Ignorar archivos de sesión de CodeIgniter
+writable/session/ci_session*
+
+# Ignorar archivos de logs
+writable/logs/*.log

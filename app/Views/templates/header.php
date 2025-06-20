@@ -176,16 +176,20 @@
 
 
         <div class="user-menu d-flex align-items-center position-relative">
-          <i class="bi bi-person-circle fs-4 me-2" style="color: #d63384;"></i>
-          <?php if(session()->get('logged_in')): ?>
-            <span class="user-text">Hola <?= esc(session()->get('nombre')) ?></span>
-            <div class="user-dropdown">
-              <a href="<?= base_url('logout') ?>">Cerrar sesión</a>
-            </div>
-          <?php else: ?>
-            <a href="<?= base_url('Login') ?>" class="text-decoration-none text-pink fw-semibold">Iniciar sesión</a>
-          <?php endif; ?>
-        </div>
+  <a href="<?= url_to('AdminController::index') ?>" class="me-2" title="Ir al panel de administración" style="color: #d63384;">
+    <i class="bi bi-person-circle fs-4"></i>
+  </a>
+  
+  <?php if(session()->get('logged_in')): ?>
+    <span class="user-text">Hola <?= esc(session()->get('nombre')) ?></span>
+    <div class="user-dropdown">
+      <a href="<?= base_url('logout') ?>">Cerrar sesión</a>
+    </div>
+  <?php else: ?>
+    <a href="<?= base_url('Login') ?>" class="text-decoration-none text-pink fw-semibold">Iniciar sesión</a>
+  <?php endif; ?>
+</div>
+
       </div>
     </div>
   </div>

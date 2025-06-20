@@ -7,7 +7,7 @@
         <div class="alert alert-danger"><?= session()->getFlashdata('mensaje') ?></div>
     <?php endif; ?>
 
-    <form action="<?= base_url('productos/guardar') ?>" method="post">
+    <form action="<?= base_url('productos/guardar') ?>" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" class="form-control" value="<?= old('nombre') ?>" required>
@@ -29,17 +29,21 @@
         </div>
 
         <div class="mb-3">
-            <label for="id_categoria">Categoría</label>
-            <select id="id_categoria" name="id_categoria" class="form-select" required>
+            <label for="id_faraon">Categoría</label>
+            <select id="id_faraon" name="id_faraon" class="form-select" required>
                 <option value="" disabled selected>Seleccione una categoría</option>
                 <?php foreach ($categorias as $categoria): ?>
-                    <option value="<?= $categoria['id_categoria'] ?>" <?= old('id_categoria') == $categoria['id_categoria'] ? 'selected' : '' ?>>
+                    <option value="<?= $categoria['id_categoria'] ?>" <?= old('id_faraon') == $categoria['id_categoria'] ? 'selected' : '' ?>>
                         <?= esc($categoria['nombre']) ?>
                     </option>
                 <?php endforeach; ?>
             </select>
         </div>
 
+        <div class="mb-3">
+            <label for="imagen">Imagen</label>
+            <input type="file" name="imagen" id="imagen" class="form-control" accept="image/*" required>
+        </div>
 
         <button type="submit" class="btn btn-success">Guardar</button>
         <a href="<?= base_url('admin') ?>" class="btn btn-secondary">Cancelar</a>
