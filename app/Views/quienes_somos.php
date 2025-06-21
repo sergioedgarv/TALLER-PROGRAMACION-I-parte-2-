@@ -26,10 +26,10 @@
                         <h5 class="card-title">Sergio Edgardo Vivero</h5>
                         <small class="text-muted d-block mb-2">Comercio, Desarrollo</small>
                         <div class="d-flex justify-content-center gap-2">
-                            <a href="#" class="text-decoration-none text-primary">
+                            <a href="https://www.linkedin.com/in/edgar-vivero-721654250/" class="text-decoration-none text-primary">
                                 <i class="bi bi-linkedin fs-5"></i>
                             </a>
-                            <a href="#" class="text-decoration-none text-primary">
+                            <a href="mailto:sergioedgarv@gmail.com" class="text-decoration-none text-primary">
                                 <i class="bi bi-envelope-fill fs-5"></i>
                             </a>
                         </div>
@@ -48,12 +48,14 @@
                         <h5 class="card-title">Lisandro Valenzuela</h5>
                         <small class="text-muted d-block mb-2">Comercio, Desarrollo</small>
                         <div class="d-flex justify-content-center gap-2">
-                            <a href="#" class="text-decoration-none text-primary">
-                                <i class="bi bi-behance fs-5"></i>
+                            <a href="https://www.linkedin.com/in/lisandro-valenzuela-26830627b/
+" class="text-decoration-none text-primary">
+                                <i class="bi bi-linkedin fs-5"></i>
                             </a>
-                            <a href="#" class="text-decoration-none text-primary">
-                                <i class="bi bi-dribbble fs-5"></i>
-                            </a>
+                         <a href="mailto:lisandrovalenzuela91@gmail.com" class="text-decoration-none text-primary">
+    <i class="bi bi-envelope-fill fs-5"></i>
+</a>
+
                         </div>
                     </div>
                 </div>
