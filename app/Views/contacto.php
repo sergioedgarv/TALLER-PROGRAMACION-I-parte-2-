@@ -1,36 +1,9 @@
-
+<link rel="stylesheet" href="<?= base_url('css/contacto.css') ?>">
 <style>
-  /* Estilos para el fondo y overlay */
-  .content-wrapper {
-    position: relative;
-    min-height: calc(100vh - 120px);
-    background-image: url('<?= base_url("img/ran1.jpg") ?>');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-
-  .content-wrapper::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 0;
-  }
-
-  .content-wrapper > main {
-    position: relative;
-    z-index: 1;
-    color: #000000;
-  }
-
-  .sombreado_cont {
-    text-shadow: 1px 1px 6px #000000;
-    color: #ffffff;
-  }
+.content-wrapper {
+  background-image: url('<?= base_url("img/ran1.jpg") ?>');
+  /* otros estilos */
+}
 </style>
 
 <div class="content-wrapper">

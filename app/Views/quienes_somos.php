@@ -63,7 +63,7 @@
         </div> <!-- Cierre del row -->
     </section> <!-- Cierre del section del equipo -->
 
-    <!-- Presentación Mejorada -->
+    <!-- Presentación-->
     <section class="mb-5 text-center bg-white p-4 shadow-sm rounded">
         <div class="row justify-content-center">
             <div class="col-lg-8">

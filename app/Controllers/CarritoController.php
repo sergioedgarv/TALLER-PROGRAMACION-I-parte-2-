@@ -6,17 +6,21 @@ use App\Models\ProductoModel;
 
 class CarritoController extends Controller
 {
+    // Agrega un producto al carrito o incrementa su cantidad si ya existe
     public function agregar($id_producto)
     {
         $session = session();
 
+        // Obtiene el carrito actual de la sesión o un array vacío
         $carrito = $session->get('carrito') ?? [];
 
         if (isset($carrito[$id_producto])) {
+            // Si el producto ya está en el carrito, aumenta la cantidad
             $carrito[$id_producto]['cantidad']++;
             $cantidad = $carrito[$id_producto]['cantidad'];
             $mensaje = "¡Genial! Ahora tienes $cantidad unidades de este producto en tu carrito.";
         } else {
+            // Si no está, lo agrega con cantidad 1
             $carrito[$id_producto] = [
                 'id_producto' => $id_producto,
                 'cantidad' => 1
@@ -24,12 +28,14 @@ class CarritoController extends Controller
             $mensaje = 'Producto agregado al carrito.';
         }
 
+        // Actualiza el carrito en la sesión
         $session->set('carrito', $carrito);
 
+        // Redirige al catálogo con mensaje flash
         return redirect()->to('/catalogo')->with('mensaje', $mensaje);
     }
 
-    // Resto de métodos sin cambios...
+    // Muestra el contenido completo del carrito con detalles y total
     public function ver()
     {
         $session = session();
@@ -40,6 +46,7 @@ class CarritoController extends Controller
         $carritoCompleto = [];
 
         if (!empty($carrito)) {
+            // Para cada producto en el carrito, obtiene detalles y calcula subtotal
             foreach ($carrito as $item) {
                 $producto = $productosModel->find($item['id_producto']);
                 if ($producto) {
@@ -50,13 +57,16 @@ class CarritoController extends Controller
             }
         }
 
+        // Prepara datos para la vista
         $data['carrito'] = $carritoCompleto;
         $data['total'] = array_sum(array_column($carritoCompleto, 'subtotal'));
         $data['mensaje'] = $session->getFlashdata('mensaje');
 
+        // Renderiza la vista del carrito
         return view('carrito_ver', $data);
     }
 
+    // Incrementa la cantidad de un producto en el carrito
     public function aumentar($id_producto)
     {
         $session = session();
@@ -74,6 +84,7 @@ class CarritoController extends Controller
         return redirect()->to('/carrito')->with('mensaje', $mensaje);
     }
 
+    // Disminuye la cantidad de un producto o lo elimina si llega a cero
     public function disminuir($id_producto)
     {
         $session = session();
@@ -95,6 +106,7 @@ class CarritoController extends Controller
         return redirect()->to('/carrito')->with('mensaje', $mensaje);
     }
 
+    // Elimina un producto del carrito directamente
     public function eliminar($id_producto)
     {
         $session = session();

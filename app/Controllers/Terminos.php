@@ -4,7 +4,7 @@ class Terminos extends BaseController
 {
     public function index()
     {
-        return view('terminos', $this->data);
+        return view('terminos', $this->data); //retorna la vista
     }
 }
 /* 

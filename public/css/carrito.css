@@ -1,0 +1,13 @@
+
+        .img-producto {
+            max-width: 100px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        .btn-cantidad {
+            min-width: 32px;
+        }
+  

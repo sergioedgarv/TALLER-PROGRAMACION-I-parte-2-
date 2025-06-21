@@ -1,62 +1,18 @@
 <?= view('templates/header') ?>
+<!-- Incluye la plantilla del encabezado común -->
 
-<style>
-    main.legal-container {
-        background-color: #f8f9fa;
-    }
-    
-    article.legal-content {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 3rem;
-        box-shadow: 0 0 15px rgba(0,0,0,0.05);
-        line-height: 1.6;
-        font-size: 1.0rem; /* Nuevo */
-    }
-    
-    h1, h2 {
-        color: #333;
-    }
-    
-    h2 {
-        border-bottom: 2px solid #dee2e6;
-        padding-bottom: .5rem;
-        margin-bottom: 1rem;
-        margin-top: 2rem;
-        font-size: 1.35rem; /* Nuevo tamaño base */
-    }
-    
-    /* Texto legal detallado */
-    .legal-content p {
-        font-size: 1.0rem; /* Igual que el contenedor */
-    }
-    
-    @media (max-width: 768px) {
-        article.legal-content {
-            padding: 2rem;
-            font-size: 0.8rem; /* Reducción móvil */
-        }
-        
-        h1 {
-            font-size: 1.4rem;
-        }
-        
-        h2 {
-            font-size: 1.2rem;
-        }
-        
-        .legal-content p {
-            font-size: 0.8rem; /* Reducción móvil */
-        }
-    }
-</style>
-
+<link rel="stylesheet" href="<?= base_url('css/terminos.css') ?>">
+<!-- Carga la hoja de estilos específica para la página de términos y condiciones -->
 
 <main class="container py-5 legal-container">
+    <!-- Contenedor principal con padding vertical y clase para estilos legales -->
+
     <h1 class="mb-4 text-center">Términos y Condiciones de Uso</h1>
-    
+    <!-- Título principal centrado con margen inferior -->
+
     <article class="legal-content">
-        
+        <!-- Contenedor para el contenido legal -->
+
         <section>
             <h2>1. Aceptación de los Términos</h2>
             <p>Al acceder y utilizar este sitio web, propiedad de <strong>VAVI</strong>, usted acepta cumplir con estos Términos y Condiciones, así como con todas las leyes y regulaciones aplicables en la República Argentina.</p>
@@ -106,3 +62,4 @@
 </main>
 
 <?= view('templates/footer') ?>
+<!-- Incluye la plantilla del pie de página común -->

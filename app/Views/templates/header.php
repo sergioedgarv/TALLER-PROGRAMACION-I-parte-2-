@@ -5,11 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?= esc($title ?? 'VAVI') ?></title>
 
-  <!-- Estilos personalizados -->
-  <link rel="stylesheet" href="<?= base_url('public/css/style.css') ?>" />
-
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
@@ -17,95 +14,11 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-  <style>
-    .dropdown:hover > .dropdown-menu {
-      display: block;
-    }
-    .btn-pink {
-      background-color: #e83e8c;
-      border-color: #e83e8c;
-    }
-    .btn-pink:hover {
-      background-color: #d63384;
-      border-color: #d63384;
-    }
-    .btn-outline-pink {
-      color: #e83e8c;
-      border-color: #e83e8c;
-    }
-    .btn-outline-pink:hover {
-      background-color: #e83e8c;
-      color: white;
-      border-color: #d63384;
-    }
-    .dropdown > .dropdown-toggle:active {
-      pointer-events: none;
-    }
+<!-- Estilos personalizados -->
+<link rel="stylesheet" href="<?= base_url('public/css/style.css') ?>" />
+<link rel="stylesheet" href="<?= base_url('css/header.css') ?>">
 
-    .user-text {
-      background-color: rgba(214, 51, 132, 0.4);
-      padding: 2px 6px;
-      border-radius: 4px;
-      color: #fff;
-      font-weight: 600;
-    }
 
-    .user-container:hover .user-text {
-      display: inline;
-    }
-
-    .user-menu {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      color: white;
-    }
-
-    .user-dropdown {
-      display: none;
-      position: absolute;
-      top: 110%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #d63384cc;
-      padding: 8px 12px;
-      border-radius: 6px;
-      white-space: nowrap;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      z-index: 1000;
-      min-width: 120px;
-      text-align: center;
-    }
-
-    .user-menu:hover .user-dropdown {
-      display: block;
-    }
-
-    .user-dropdown a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .user-dropdown a:hover {
-      text-decoration: underline;
-    }
-
-    /* Previene saltos de línea en los ítems */
-    .navbar-nav .nav-link {
-      white-space: nowrap;
-    }
-
-    @media (max-width: 991.98px) {
-      .search-form {
-        width: 100%;
-        margin-top: 10px;
-      }
-    }
-    ///////////
-
-    
-  </style>
 </head>
 
 <body class="cuerpo">
@@ -176,22 +89,19 @@
 
 
         <div class="user-menu d-flex align-items-center position-relative">
-  <a href="<?= url_to('AdminController::index') ?>" class="me-2" title="Ir al panel de administración" style="color: #d63384;">
-    <i class="bi bi-person-circle fs-4"></i>
-  </a>
-  
-  <?php if(session()->get('logged_in')): ?>
-    <span class="user-text">Hola <?= esc(session()->get('nombre')) ?></span>
-    <div class="user-dropdown">
-      <a href="<?= base_url('logout') ?>">Cerrar sesión</a>
-    </div>
-  <?php else: ?>
-    <a href="<?= base_url('Login') ?>" class="text-decoration-none text-pink fw-semibold">Iniciar sesión</a>
-  <?php endif; ?>
-</div>
-
+          <i class="bi bi-person-circle fs-4 me-2" style="color: #d63384;"></i>
+          <?php if(session()->get('logged_in')): ?>
+            <span class="user-text">Hola <?= esc(session()->get('nombre')) ?></span>
+            <div class="user-dropdown">
+              <a href="<?= base_url('logout') ?>">Cerrar sesión</a>
+            </div>
+          <?php else: ?>
+            <a href="<?= base_url('Login') ?>" class="text-decoration-none text-pink fw-semibold">Iniciar sesión</a>
+          <?php endif; ?>
+        </div>
       </div>
     </div>
+
   </div>
 </nav>
 

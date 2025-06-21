@@ -1,5 +1,7 @@
 <?= view('templates/header') ?>
 <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
+<link rel="stylesheet" href="<?= base_url('css/productos.css') ?>">
+
 <?= $this->renderSection('content') ?>
 
 <!DOCTYPE html>
@@ -10,19 +12,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* Fondo aplicado al cuerpo del contenido principal */
 .content-wrap {
     flex: 1 0 auto;
     background-image: url('<?= base_url('img/ran1.jpg') ?>');
@@ -32,41 +21,8 @@ body {
     padding: 40px 0;
     min-height: 500px; /* asegura altura visible incluso sin contenido */
 }
-/* esto no va posiblmente la idea era separar mas el cuerpo de la pag, de lo que respecta el footer 
-footer {
-    flex-shrink: 0;
-    background-color: #f8f9fa;
-    padding: 20px 0;
-    text-align: center;
-}
-*/
-
-.card-body {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-.card-text.descripcion {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-
-.card-img-top {
-    height: 400px;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-.sombra_blanca {
-  text-shadow: 3px 3px 5px #fff;
-}
-
 </style>
+
 </head>
 <body>
 

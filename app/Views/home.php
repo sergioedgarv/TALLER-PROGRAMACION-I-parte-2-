@@ -4,61 +4,8 @@
 <!-- Google Fonts: Josefin Sans + Montserrat -->
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
-
-<style>
-    .fuente-josefin {
-        font-family: 'Josefin Sans', sans-serif;
-    }
-
-    .fuente-montserrat-black-italic {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 900;
-        font-style: italic;
-    }
-
-    .texto-seleccionado {
-        background-color: rgba(4, 42, 82, 0.7); /* azul intenso */
-        color: white;
-        border-radius: 8px;
-        display: inline-block;
-        padding: 2px 3px;
-        line-height: 1.5;
-
-        /* Sombras suaves */
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-
-        /* Transición para entrada */
-        animation: fadeIn 0.3s ease-in-out;
-        cursor: pointer; /* Indica que es clickeable */
-    }
-
-    @keyframes fadeIn {
-        0% {
-            opacity: 1;
-            transform: scale(0.95);
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
-            transform: translateY(0);
-        }
-        40% {
-            transform: translateY(-20px);
-        }
-        60% {
-            transform: translateY(-10px);
-        }
-    }
-
-    .bounce {
-        animation: bounce 0.6s;
-    }
-</style>
+<link rel="stylesheet" href="<?= base_url('css/home.css') ?>">
+<!-- Carga la hoja de estilos específica para la página de home/inicio -->
 
 <!-- Contenido Principal -->
 <main>
