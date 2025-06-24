@@ -7,9 +7,9 @@ use CodeIgniter\Config\BaseConfig;
 class Email extends BaseConfig
 {
     // Dirección de correo desde la cual se enviarán los emails
-    public string $fromEmail  = 'sergioedgarv@gmail.com';  // Cambia por un email válido de tu dominio
-    public string $fromName   = 'Formulario de Contacto';  // Nombre que aparecerá como remitente
-    public string $recipients = ''; // Opcional, puedes dejar vacío
+    public string $fromEmail  = 'sergioedgarv@gmail.com';  
+    public string $fromName   = 'Formulario de Contacto';  
+    public string $recipients = '';
 
     /**
      * The "user agent"
@@ -39,7 +39,7 @@ class Email extends BaseConfig
     /**
      * Contraseña SMTP o contraseña de aplicación
      */
-    public string $SMTPPass = 'mrzm imfk rhpz zjif';  // Cambia por tu contraseña
+    public string $SMTPPass = 'mrzm imfk rhpz zjif';  // CONTRASEÑA DE APP
 
     /**
      * Puerto SMTP
