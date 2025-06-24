@@ -6,6 +6,7 @@ use App\Models\ProductoModel;
 
 class CheckoutController extends Controller
 {
+    //si el carrito esta vacio mostrará un msj caso contrario te lleva al form
     public function index()
     {
         $session = session();

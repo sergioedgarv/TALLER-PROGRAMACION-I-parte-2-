@@ -28,3 +28,6 @@
     </script>
 </body>
 </html>
+
+    <!-- Intentamos incorporar el SDK de MP pero hubo complicaciones con versiones distintas de php y de apache...
+     y por que habia que crear en mercado pago cuenta de vendedor jajaj -->

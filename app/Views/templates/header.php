@@ -52,7 +52,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Menú + Carrito + Usuario -->
+
     <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
 
       <!-- Menú -->
@@ -80,11 +80,18 @@
       </ul>
 
       <!-- Carrito + Usuario -->
-      <div class="d-flex align-items-center gap-3">
-<a class="btn btn-pink text-white rounded-pill px-4 d-flex align-items-center gap-2" href="<?= base_url('carrito') ?>">
-  <i class="bi bi-cart"></i>
-  <span>Carrito</span>
-</a>
+<?php
+$current_url = current_url(); // o la función que uses para obtener la URL actual
+$carrito_url = base_url('carrito');
+$active_class = ($current_url == $carrito_url) ? 'btn-pink' : 'btn-outline-pink'; // ejemplo
+?>
+<div class="d-flex align-items-center gap-3">
+  <a class="btn <?= $active_class ?> text-white rounded-pill px-4 d-flex align-items-center gap-2" href="<?= $carrito_url ?>">
+    <i class="bi bi-cart"></i>
+    <span>Carrito</span>
+  </a>
+</div>
+
 
 
 
