@@ -10,7 +10,7 @@
 </head>
 <body>
     <main class="container my-5">
-        <!-- Aquí va el contenido variable de cada página -->
+
         <?= $this->renderSection('content') ?>
     </main>
 
