@@ -24,25 +24,25 @@
         <div id="autoCarousel" class="carousel slide h-100" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3000">
-                    <img src="<?= base_url('img/fondo.jpg') ?>" class="d-block w-100" alt="Imagen 1">
+                    <img src="<?= base_url('img/IMG_2221 (1).jpg') ?>" class="d-block w-100" alt="Imagen 1">
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <img src="<?= base_url('img/9.jpg') ?>" class="d-block w-100" alt="Imagen 2">
+                    <img src="<?= base_url('img/11.jpg') ?>" class="d-block w-100" alt="Imagen 2">
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
                     <img src="<?= base_url('img/IMG_2187 (1).jpg') ?>" class="d-block w-100" alt="Imagen 3">
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <img src="<?= base_url('img/IMG_2221 (1).jpg') ?>" class="d-block w-100" alt="Imagen 4">
+                    <img src="<?= base_url('img/fondo.jpg') ?>" class="d-block w-100" alt="Imagen 4">
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <img src="<?= base_url('img/1.jpg') ?>" class="d-block w-100" alt="Imagen 5">
+                    <img src="<?= base_url('img/2.jpg') ?>" class="d-block w-100" alt="Imagen 5">
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <img src="<?= base_url('img/11.jpg') ?>" class="d-block w-100" alt="Imagen 6">
+                    <img src="<?= base_url('img/pcaro.jpg') ?>" class="d-block w-100" alt="Imagen 6">
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <img src="<?= base_url('img/pcaro.jpg') ?>" class="d-block w-100" alt="Imagen 7">
+                    <img src="<?= base_url('img/1.jpg') ?>" class="d-block w-100" alt="Imagen 7">
                 </div>
             </div>
 

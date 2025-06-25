@@ -6,7 +6,7 @@ use App\Models\ProductoModel;
 
 class CheckoutController extends Controller
 {
-    //si el carrito esta vacio mostrará un msj caso contrario te lleva al form
+    //si el carrito esta vacio mostrará un msj caso contrario te lleva al formulario!
     public function index()
     {
         $session = session();
@@ -62,27 +62,66 @@ class CheckoutController extends Controller
         }
 
         // Armar mensaje del correo
-        $mensaje = "Nuevo pedido del cliente $nombre\n";
-        $mensaje .= "Email: $emailCliente\n";
-        $mensaje .= "Teléfono: $telefono\n";
-        $mensaje .= "Dirección: $direccion\n\n";
-        $mensaje .= "Detalle del pedido:\n";
+            $mensaje = "
+        <html>
+        <head>
+        <style>
+            body { font-family: Arial, sans-serif; color: #333; }
+            h2 { color: #2c3e50; }
+            table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+            tfoot td { font-weight: bold; }
+        </style>
+        </head>
+        <body>
+        <h2>Nuevo pedido de: " . htmlspecialchars($nombre) . "</h2>
+        <p><strong>Email:</strong> " . htmlspecialchars($emailCliente) . "</p>
+        <p><strong>Teléfono:</strong> " . htmlspecialchars($telefono) . "</p>
+        <p><strong>Dirección:</strong> " . nl2br(htmlspecialchars($direccion)) . "</p>
 
+        <h3>Detalle del pedido:</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+            </thead>
+            <tbody>";
         foreach ($carritoCompleto as $producto) {
-            $mensaje .= "- {$producto['nombre']} x {$producto['cantidad']} = $" . number_format($producto['subtotal'], 2, ',', '.') . "\n";
+            $mensaje .= "
+            <tr>
+                <td>" . htmlspecialchars($producto['nombre']) . "</td>
+                <td>" . intval($producto['cantidad']) . "</td>
+                <td>$" . number_format($producto['subtotal'], 2, ',', '.') . "</td>
+            </tr>";
         }
-
-        $mensaje .= "\nTotal: $" . number_format($total, 2, ',', '.') . "\n";
+        $mensaje .= "
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan='2'>Total</td>
+                <td>$" . number_format($total, 2, ',', '.') . "</td>
+            </tr>
+            </tfoot>
+        </table>
+        </body>
+        </html>";
 
         // Enviar correo
         $email = \Config\Services::email();
 
         // Configura aquí el correo remitente y destinatarios
-        $email->setFrom('tuemail@tudominio.com', 'Tu Tienda');
+        $email->setFrom('sergioedgarv@gmail.com', 'Tu Tienda');
         $email->setTo($emailCliente); // Cliente
-        $email->setCc('admin@tudominio.com'); // Admin o quien reciba copia
+        $email->setCc('sergioedgarv@gmail.com'); // Admin recibe copia
+        $email->setReplyTo($emailCliente, $nombre); // Para responder al cliente
         $email->setSubject('Confirmación de pedido');
         $email->setMessage($mensaje);
+
+
 
         if ($email->send()) {
             // Vaciar carrito

@@ -19,7 +19,7 @@
     background-position: center;
     background-repeat: no-repeat;
     padding: 40px 0;
-    min-height: 500px; /* asegura altura visible incluso sin contenido */
+    min-height: 550px; /* asegura altura visible incluso sin contenido */
 }
 </style>
 
@@ -40,9 +40,12 @@
 
 
         <!-- Título dinámico: muestra categoría o término buscado -->
-        <h2 class="text-black mb-4 text-center sombra_blanca">
+
+        <h2 class="categoria-titulo mb-4 text-center">
             <?= isset($categoria) ? esc($categoria) : 'Productos' ?>
         </h2>
+        
+
 
         <?php if (!empty($productos)): ?>
             <div class="row row-cols-1 row-cols-md-3 g-4">

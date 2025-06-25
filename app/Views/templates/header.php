@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?= esc($title ?? 'VAVI') ?></title>
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Bootstrap Icons -->
@@ -13,49 +14,20 @@
   <!-- Estilos personalizados -->
   <link rel="stylesheet" href="<?= base_url('public/css/style.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('css/header.css') ?>">
-  <style>
-    /* Asegura que el dropdown se muestre sobre otros elementos y tenga scroll si es muy largo */
-    .dropdown-menu {
-      max-height: 300px;
-      overflow-y: auto;
-      min-width: 200px;
-      z-index: 1050 !important;
-    }
-    /* Submenú móvil visible siempre, con padding para jerarquía */
-    @media (max-width: 991px) {
-      /* Ocultar dropdown-toggle en móvil */
-      .nav-item.dropdown > a.dropdown-toggle {
-        display: none;
-      }
-      /* Mostrar submenú móvil */
-      .nav-item.dropdown > ul.mobile-submenu {
-        display: block !important;
-        padding-left: 1rem;
-        margin-top: 0.5rem;
-      }
-      /* Estilo para links del submenú móvil */
-      .nav-item.dropdown > ul.mobile-submenu li a {
-        padding-left: 1rem;
-        font-weight: 500;
-      }
-      /* Ocultar dropdown-menu desktop en móvil */
-      .nav-item.dropdown > ul.dropdown-menu {
-        display: none !important;
-      }
-    }
-  </style>
 </head>
 
 <body class="cuerpo">
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container">
+
       <!-- Logo + Buscador a la izquierda -->
       <div class="d-flex align-items-center me-auto">
         <!-- Logo -->
         <a class="navbar-brand d-flex align-items-center gap-1 me-3" href="<?= base_url('/') ?>">
           <i class="bi bi-stars"></i> VAVI
         </a>
+
         <form class="d-none d-lg-flex" role="search" action="<?= base_url('buscar') ?>" method="GET">
           <input
             class="form-control form-control-sm me-2"
@@ -76,33 +48,18 @@
 
       <!-- Contenido del navbar -->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
         <!-- Menú centrado -->
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link" href="<?= base_url('') ?>">Principal</a></li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Catálogo
-            </a>
-            <!-- Menú desplegable desktop -->
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="catalogoDropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown">Catálogo</a>
+            <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="<?= base_url('catalogo') ?>">Todos</a></li>
               <?php if (isset($categorias)): ?>
                 <?php foreach ($categorias as $cat): ?>
                   <li>
                     <a class="dropdown-item" href="<?= base_url('catalogo/' . $cat['id_categoria']) ?>">
-                      <?= esc($cat['nombre']) ?>
-                    </a>
-                  </li>
-                <?php endforeach; ?>
-              <?php endif; ?>
-            </ul>
-            <!-- Submenú móvil siempre visible -->
-            <ul class="mobile-submenu list-unstyled d-lg-none">
-              <li><a class="nav-link" href="<?= base_url('catalogo') ?>">Todos</a></li>
-              <?php if (isset($categorias)): ?>
-                <?php foreach ($categorias as $cat): ?>
-                  <li>
-                    <a class="nav-link" href="<?= base_url('catalogo/' . $cat['id_categoria']) ?>">
                       <?= esc($cat['nombre']) ?>
                     </a>
                   </li>
@@ -118,17 +75,21 @@
 
         <!-- Carrito + Usuario a la derecha -->
         <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-2">
-          <?php
+         <?php
             $current_url = current_url();
             $carrito_url = base_url('carrito');
-            $active_class = ($current_url == $carrito_url) ? 'btn-pink' : 'btn-outline-pink';
-          ?>
-          <a class="btn <?= $active_class ?> text-white rounded-pill px-4 d-flex align-items-center gap-2" href="<?= $carrito_url ?>">
-            <i class="bi bi-cart text-white"></i>
-            <span>Carrito</span>
-          </a>
+        $active_class = ($current_url == $carrito_url) ? 'btn-pink' : 'btn-outline-pink';
+?>
+<a class="btn <?= $active_class ?> text-white rounded-pill px-4 d-flex align-items-center gap-2" href="<?= $carrito_url ?>">
+  <i class="bi bi-cart text-white"></i>
+  <span>Carrito</span>
+</a>
+
           <div class="user-menu d-flex align-items-center position-relative">
-            <i class="bi bi-person-circle fs-4 me-2" style="color: #d63384;"></i>
+            <a href= "<?= url_to('AdminController::index') ?>" class="me-2" title="Ir al panel de administración" style="color: #d63384;">
+            <i class="bi bi-person-circle fs-4 me-2"></i>
+                </a>
+
             <?php if(session()->get('logged_in')): ?>
               <span class="user-text">Hola <?= esc(session()->get('nombre')) ?></span>
               <div class="user-dropdown">
@@ -139,6 +100,7 @@
             <?php endif; ?>
           </div>
         </div>
+
       </div>
     </div>
   </nav>

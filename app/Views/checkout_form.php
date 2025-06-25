@@ -40,7 +40,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="direccion" class="form-label">Dirección de envío</label>
+            <label for="direccion" class="form-label">Dirección de envío (En caso de retiro escribir "Retiro")</label>
             <textarea class="form-control" id="direccion" name="direccion" rows="3" required><?= old('direccion') ?></textarea>
         </div>
 
