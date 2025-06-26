@@ -6,32 +6,46 @@ use App\Models\ProductoModel;
 
 class CarritoController extends Controller
 {
+    protected $productosModel;
+
+    public function __construct()
+    {
+        $this->productosModel = new ProductoModel();
+    }
+
     // Agrega un producto al carrito o incrementa su cantidad si ya existe
     public function agregar($id_producto)
     {
         $session = session();
-
-        // Obtiene el carrito actual de la sesión o un array vacío
         $carrito = $session->get('carrito') ?? [];
 
-        if (isset($carrito[$id_producto])) {
-            // Si el producto ya está en el carrito, aumenta la cantidad
-            $carrito[$id_producto]['cantidad']++;
-            $cantidad = $carrito[$id_producto]['cantidad'];
-            $mensaje = "¡Genial! Ahora tienes $cantidad unidades de este producto en tu carrito.";
-        } else {
-            // Si no está, lo agrega con cantidad 1
-            $carrito[$id_producto] = [
-                'id_producto' => $id_producto,
-                'cantidad' => 1
-            ];
-            $mensaje = 'Producto agregado al carrito.';
+        // Obtener producto para verificar stock
+        $producto = $this->productosModel->find($id_producto);
+        if (!$producto) {
+            return redirect()->to('/catalogo')->with('mensaje', 'Producto no encontrado.');
         }
 
-        // Actualiza el carrito en la sesión
-        $session->set('carrito', $carrito);
+        $cantidadActual = isset($carrito[$id_producto]) ? $carrito[$id_producto]['cantidad'] : 0;
 
-        // Redirige al catálogo con mensaje flash
+        if ($cantidadActual + 1 > $producto['stock']) {
+            // No hay suficiente stock para agregar más
+            $mensaje = "No puedes agregar más unidades. Solo quedan {$producto['stock']} en stock.";
+        } else {
+            // Se puede agregar
+            if (isset($carrito[$id_producto])) {
+                $carrito[$id_producto]['cantidad']++;
+                $cantidad = $carrito[$id_producto]['cantidad'];
+                $mensaje = "¡Genial! Ahora tienes $cantidad unidades de este producto en tu carrito.";
+            } else {
+                $carrito[$id_producto] = [
+                    'id_producto' => $id_producto,
+                    'cantidad' => 1
+                ];
+                $mensaje = 'Producto agregado al carrito.';
+            }
+            $session->set('carrito', $carrito);
+        }
+
         return redirect()->to('/catalogo')->with('mensaje', $mensaje);
     }
 
@@ -41,14 +55,12 @@ class CarritoController extends Controller
         $session = session();
         $carrito = $session->get('carrito') ?? [];
 
-        $productosModel = new ProductoModel();
-
         $carritoCompleto = [];
 
         if (!empty($carrito)) {
             // Para cada producto en el carrito, obtiene detalles y calcula subtotal
             foreach ($carrito as $item) {
-                $producto = $productosModel->find($item['id_producto']);
+                $producto = $this->productosModel->find($item['id_producto']);
                 if ($producto) {
                     $producto['cantidad'] = $item['cantidad'];
                     $producto['subtotal'] = $producto['precio'] * $item['cantidad'];
@@ -72,13 +84,24 @@ class CarritoController extends Controller
         $session = session();
         $carrito = $session->get('carrito') ?? [];
 
-        if (isset($carrito[$id_producto])) {
+        if (!isset($carrito[$id_producto])) {
+            return redirect()->to('/carrito')->with('mensaje', 'Producto no encontrado en el carrito.');
+        }
+
+        $producto = $this->productosModel->find($id_producto);
+        if (!$producto) {
+            return redirect()->to('/carrito')->with('mensaje', 'Producto no encontrado.');
+        }
+
+        $cantidadActual = $carrito[$id_producto]['cantidad'];
+
+        if ($cantidadActual + 1 > $producto['stock']) {
+            $mensaje = "No puedes aumentar la cantidad. Solo quedan {$producto['stock']} unidades en stock.";
+        } else {
             $carrito[$id_producto]['cantidad']++;
             $session->set('carrito', $carrito);
             $cantidad = $carrito[$id_producto]['cantidad'];
             $mensaje = "¡Cantidad aumentada! Ahora tienes $cantidad unidades de este producto.";
-        } else {
-            $mensaje = 'Producto no encontrado en el carrito.';
         }
 
         return redirect()->to('/carrito')->with('mensaje', $mensaje);
